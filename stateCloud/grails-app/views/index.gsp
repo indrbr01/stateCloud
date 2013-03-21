@@ -81,6 +81,6 @@
 		</style>-->
 	</head>
 	<body>
-		<g:link controller="state" action="getZipCodes">Get Zip Codes</g:link>
+		<g:link controller="state" action="findZipCodes">Get Zip Codes</g:link>
 	</body>
 </html>

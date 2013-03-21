@@ -5,10 +5,10 @@
         <title>State Cloud</title>
     </head>
     <body>
-      <g:if test="${!zips}">none</g:if>
+      <g:if test="${zips.isEmpty()}">none</g:if>
       <g:else>
         <g:each var="zip" in="${zips}">
-          ${zip.zip}
+          name: ${zip.name}, number of zips: ${zip.numberOfZips}  
         </g:each>
       </g:else>
     </body>

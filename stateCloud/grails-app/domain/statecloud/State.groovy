@@ -6,7 +6,7 @@ class State {
     
     String name
     
-    static hasMany = [zipCodes: ZipCode]
+    int numberOfZips = 0
 
     static constraints = {
         name blank: false
