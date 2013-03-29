@@ -3,25 +3,29 @@ package statecloud
 class StateController {
     
     def stateCloudService
+    
+    static defaultAction = "displayCloud"
 
-    def findZipCodes(){
-        stateCloudService.getZips()
-        def states = State.findAll()
-        println states
-        /**if (zips.size < 1){
+    def displayCloud(){ //get map of states and # of zip codes and pass them into stateCloud view
         
-            println 'here'
-            String url = "http://api.geonames.org/postalCodeSearch?placename=MN&username=demo"
-            def callUrl = new URL(url)
+        def stateMap = stateCloudService.getStateMap()
         
-            def response = callUrl.getText()
-            
-            render view: 'stateCloud', model: zips
-            return
-        }
-
-        else{*/
-            render view: 'stateCloud', model: [zips: states]
-        /*}*/
+        render view: 'stateCloud', model: [stateMap: stateMap]
+    }
+    
+    def getTags(){ //delete entries from State then generate new entries
+        
+        State.executeUpdate("delete from State")
+        
+        stateCloudService.getStates()
+        
+        displayCloud()      
+    }
+    
+    def deleteTags(){ //delete entries from State table
+        
+        State.executeUpdate("delete from State")
+        
+        displayCloud()
     }
 }
